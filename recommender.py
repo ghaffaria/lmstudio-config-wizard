@@ -73,32 +73,35 @@ def recommend_settings(hardware_info: dict, model_profile: dict) -> dict:
         "try_mmap": try_mmap
     }
 
-    # Update recommendations based on grouped model sizes
+    # Refactor `recommend_settings` to handle quantization and model size more cleanly
+    # Extract logic for model size recommendations
     model_size = model_profile.get("model_size", "Other")
+    size_recommendations = {
+        "Under 2 GB": {"batch_size": 64, "context_length": 1024},
+        "2-4 GB": {"batch_size": 128, "context_length": 2048},
+        "4-8 GB": {"batch_size": 256, "context_length": 4096},
+        "8-13 GB": {"batch_size": 512, "context_length": 8192},
+        "More than 13 GB": {"batch_size": 1024, "context_length": 16384},
+        "Other": {"batch_size": 128, "context_length": 2048},
+    }
 
-    if model_size == "Under 2 GB":
-        batch_size = 64
-        context_length = 1024
-    elif model_size == "2-4 GB":
-        batch_size = 128
-        context_length = 2048
-    elif model_size == "4-8 GB":
-        batch_size = 256
-        context_length = 4096
-    elif model_size == "8-13 GB":
-        batch_size = 512
-        context_length = 8192
-    elif model_size == "More than 13 GB":
-        batch_size = 1024
-        context_length = 16384
-    else:
-        batch_size = 128
-        context_length = 2048
+    size_config = size_recommendations.get(model_size, size_recommendations["Other"])
+
+    # Extract logic for quantization recommendations
+    quantization = model_profile.get("quantization", "Other")
+    quantization_recommendations = {
+        "Q4_K_M": {"gpu_offload": 1},
+        "Q4_K_S": {"gpu_offload": 1},
+        "Q8_0": {"gpu_offload": 2},
+        "4bit": {"gpu_offload": 0},
+        "Q3_K_M": {"gpu_offload": 0},
+        "Other": {"gpu_offload": 0},
+    }
+
+    quantization_config = quantization_recommendations.get(quantization, quantization_recommendations["Other"])
 
     # Update final config assembly
-    config.update({
-        "batch_size": batch_size,
-        "context_length": context_length
-    })
+    config.update(size_config)
+    config.update(quantization_config)
 
     return config

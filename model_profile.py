@@ -21,10 +21,32 @@ def ask_model_profile():
         ],
     ).ask()
 
-    quantization = questionary.select(
-        "🔢 What quantization type is the model?",
-        choices=["Q4_K_M", "Q4_K_S", "Q5_K_M", "Q6_K", "FP16", "Other"],
+    # Group quantization types and ask user for the group
+    quantization_group = questionary.select(
+        "🔢 Which quantization group does the model belong to?",
+        choices=[
+            "4-bit Quantization",
+            "8-bit Quantization",
+            "Other Quantization",
+        ],
     ).ask()
+
+    # Ask for specific quantization type within the selected group
+    if quantization_group == "4-bit Quantization":
+        quantization = questionary.select(
+            "🔢 Select the specific quantization type:",
+            choices=["Q4_K_M", "Q4_K_S", "4bit"],
+        ).ask()
+    elif quantization_group == "8-bit Quantization":
+        quantization = questionary.select(
+            "🔢 Select the specific quantization type:",
+            choices=["Q8_0"],
+        ).ask()
+    else:
+        quantization = questionary.select(
+            "🔢 Select the specific quantization type:",
+            choices=["Q3_K_M", "Other"],
+        ).ask()
 
     format = questionary.select(
         "📂 What format is the model?",
