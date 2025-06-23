@@ -98,7 +98,7 @@ Contributions are welcome! Please follow these steps:
 
 ## Maintainers
 
-- [Your Name](https://github.com/your-profile)
+- [Your Name](https://github.com/ghaffaria)
 
 ## License
 
