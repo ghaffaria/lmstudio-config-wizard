@@ -53,7 +53,7 @@ def get_gpu_info():
                     if "VGA compatible controller" in line or "3D controller" in line:
                         gpu_name = line.split(":")[2].strip()
 
-                # Try nvidia-smi
+                # Try nvidia-smi for NVIDIA GPUs
                 try:
                     nvidia_output = subprocess.check_output(
                         ["nvidia-smi", "--query-gpu=memory.total", "--format=csv,nounits,noheader"],
@@ -61,8 +61,8 @@ def get_gpu_info():
                     ).decode().strip()
                     if nvidia_output:
                         gpu_memory = f"{nvidia_output} MB"
-                except Exception:
-                    pass
+                except FileNotFoundError:
+                    pass  # nvidia-smi not available
 
             except Exception:
                 pass

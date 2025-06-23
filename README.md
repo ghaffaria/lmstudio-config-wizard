@@ -1,116 +1,105 @@
-# 🤖 LMstudio Model Config Recommender
+# LM Studio Configuration Recommender
 
-**LMstudio Model Config Recommender** is an interactive Python tool that recommends optimal configuration settings for running Large Language Models (LLMs) inside [LM Studio](https://lmstudio.ai), tailored to your **hardware specs** and **model usage goals**.
+## Overview
 
-Whether you're aiming for maximum creativity, high accuracy, or resource-efficient inference, this tool helps generate the right settings for parameters like:
+LM Studio Configuration Recommender is a Python-based CLI tool designed to recommend optimal configuration settings for running large language models (LLMs) in LM Studio. The tool automatically detects system hardware and gathers user-defined model usage goals to generate tailored recommendations. It supports cross-platform functionality (macOS, Linux, and Windows).
 
-- `context length`
-- `batch size`
-- `temperature`
-- `top-k`
-- `top-p`
-- `repeat penalty`
-- and more
+## Features
 
----
+- **Automatic Hardware Detection**: Detects CPU, RAM, GPU, and GPU memory.
 
-## 🔧 Key Features
+- **Interactive User Input**: Guides users through selecting model details, quantization types, formats, and usage goals.
 
-- 🧠 Auto-detects system hardware (CPU, GPU, RAM)
-- 🤖 Asks user-friendly questions to infer usage intent (e.g. creativity vs. precision)
-- 📊 Suggests performance-aware values for critical LLM runtime parameters
-- 📝 Outputs ready-to-use YAML config for LM Studio
-- 🧰 Works across macOS, Linux, and Windows
+- **Tailored Recommendations**: Generates configurations based on hardware and user preferences.
 
----
+- **YAML Export**: Saves recommended configurations to YAML files with dynamic filenames.
 
-## 📂 Project Structure
+- **Cross-Platform Support**: Works seamlessly on macOS, Linux, and Windows.
+
+## Project Structure
 
 ```plaintext
-LMstudio-model-config-recommender/
-│
-├── cli.py                  # Command-line interface
-├── hardware\_utils.py       # Detect system specs
-├── model\_profile.py        # Ask for usage preferences
-├── recommender.py          # Generate config from inputs
-├── templates/              # Output YAML templates
-├── output/                 # Generated configs
-├── requirements.txt        # Python dependencies
-└── README.md               # Project documentation
+├── cli.py                # Main entry point for the CLI tool
+├── hardware_utils.py     # Hardware detection logic
+├── model_profile.py      # Interactive user input for model details
+├── recommender.py        # Recommendation logic
+├── requirements.txt      # Python dependencies
+├── README.md             # Project documentation
+├── output/               # Directory for exported YAML configurations
+├── templates/            # YAML configuration templates
 ```
 
----
+## How to Use
 
-## 🚀 How to Use
+### Setup
 
-### 1. Set up the environment
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/your-repo/LMstudio-model-config-recommender.git
+   cd LMstudio-model-config-recommender
+   ```
+
+2. **Install Dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Run the Tool
+
+To start the CLI tool:
 
 ```bash
-git clone https://github.com/your-username/LMstudio-model-config-recommender.git
-cd LMstudio-model-config-recommender
-
-python -m venv venv
-source venv/bin/activate   # or use venv\Scripts\activate on Windows
-pip install -r requirements.txt
+python cli.py
 ```
 
-### 2. Run the tool
+### Example Commands
 
-```bash
-python cli.py --export output/lmstudio_config.yaml
-```
+- Export configuration to YAML:
 
-You’ll be guided through:
+  ```bash
+  python cli.py --export
+  ```
 
-- detecting your hardware (CPU, RAM, GPU)
-- choosing your model or upload path
-- expressing your intent (e.g. “I need creative writing” or “I care about precision”)
+## Example Use Cases
 
-💾 Your recommended configuration will be saved to `output/lmstudio_config.yaml`
+1. **Creative Writing**:
 
----
+   - Select "Creative" as the usage goal to optimize for storytelling and brainstorming.
 
-## 💡 Example Use Cases
+2. **Coding Assistance**:
 
-- "I want to run **Mistral-7B** on my **16GB RAM MacBook** — what’s the right context size?"
-- "I'm prioritizing **accuracy** over speed — what settings should I change?"
-- "How do I configure **temperature** or **top-p** for **creative content generation**?"
+   - Choose "Coding" as the use case to tailor configurations for code generation.
 
-This tool takes the guesswork out of configuring models and adapts to your local resources.
+3. **Chatbot Development**:
 
----
+   - Set "Natural Dialogue" as the goal for conversational AI.
 
-## 📈 Roadmap
+## Roadmap
 
-- [x] Cross-platform support (Linux/macOS/Windows)
-- [x] Basic interactive CLI
-- [x] Hardware auto-detection
-- [ ] GUI using `streamlit` or `textual`
-- [ ] Config preview before export
-- [ ] Model library with presets (e.g. LLaMA 3, Mistral, Gemma, Mixtral)
+- **Validation Enhancements**: Improve edge case handling for hardware detection.
 
----
+- **Advanced Recommendations**: Incorporate additional parameters for fine-tuning.
 
-## 🤝 Contributing
+- **GUI Version**: Develop a graphical interface for easier interaction.
 
-We welcome PRs and suggestions!
-To contribute:
+- **Cloud Integration**: Enable cloud-based configuration generation.
 
-1. Fork the repo
-2. Create a new branch
-3. Submit your pull request
+## Contributing
 
-A `CONTRIBUTING.md` guide will be added soon.
+Contributions are welcome! Please follow these steps:
 
----
+1. Fork the repository.
 
-## 🧑‍💻 Maintainers
+2. Create a new branch for your feature or bug fix.
 
-Developed by [@ghaffaria](https://github.com/ghaffaria).
-Inspired by the challenges of configuring local LLMs properly.
+3. Submit a pull request with a detailed description of changes.
 
----
+## Maintainers
 
-## 📄 License
+- [Your Name](https://github.com/your-profile)
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

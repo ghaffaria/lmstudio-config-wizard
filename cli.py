@@ -11,14 +11,15 @@ from rich.console import Console
 
 
 def display_config(config):
-    table = Table(title="\U0001F4BB Recommended LM Studio Configuration")
-    table.add_column("Parameter", style="cyan", no_wrap=True)
-    table.add_column("Value", style="magenta")
+    table = Table(title="Recommended LM Studio Configuration", title_style="bold cyan")
+    table.add_column("Parameter", style="bold magenta")
+    table.add_column("Value", style="green")
 
     for key, value in config.items():
-        table.add_row(str(key), str(value))
+        table.add_row(key, str(value))
 
-    print(table)
+    console = Console()
+    console.print(table)
 
 
 def main():
