@@ -106,7 +106,7 @@ A `CONTRIBUTING.md` guide will be added soon.
 
 ## 🧑‍💻 Maintainers
 
-Developed by [@ghaffaria](https://github.com/yourgithubhandle).
+Developed by [@ghaffaria](https://github.com/ghaffaria).
 Inspired by the challenges of configuring local LLMs properly.
 
 ---
