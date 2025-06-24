@@ -36,8 +36,8 @@ LM Studio Configuration Recommender is a Python-based CLI tool designed to recom
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/your-repo/LMstudio-model-config-recommender.git
-   cd LMstudio-model-config-recommender
+   git clone https://github.com/ghaffaria/lmstudio-config-wizard.git
+   cd lmstudio-config-wizard
    ```
 
 2. **Install Dependencies**:
