@@ -9,8 +9,6 @@ venv/
 # macOS specific files
 .DS_Store
 
-# Output directories
-output/
 
 # Log files
 *.log
@@ -19,8 +17,7 @@ output/
 *.tmp
 *.temp
 
-# Generated YAML config files
-*.yaml
+
 
 # IDE configurations
 .vscode/
