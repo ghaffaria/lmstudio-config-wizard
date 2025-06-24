@@ -59,7 +59,7 @@ python cli.py
 - Export configuration to YAML:
 
   ```bash
-  python cli.py --export
+  python --export output/lmstudio_config.yaml
   ```
 
 ## Example Use Cases
